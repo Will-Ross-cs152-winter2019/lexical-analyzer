@@ -59,7 +59,6 @@ testing variables
 {GT} {numGt++;}
 {LTE} {numLte++;}
 {GTE} {numGte++;}
-<<<<<<< Updated upstream
 {SEMICOLON} {numSM++;}
 {COLON} {numColon++;}
 {COMMA} {numComma++;}
