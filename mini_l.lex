@@ -1,13 +1,29 @@
-        int num_lines = 0, num_chars = 0;
+/*
+* Arithmetic Symbols
+*/
+
+NUMBER [0-9]+
+FLOAT NUMBER*\.NUMBER+
+PLUS \+
+SUB -
+MULT \*
+DIV \/
+MOD %
+
+/*
+testing variables
+*/
+	int numPlus, numSub, numMult, numMod, numDiv = 0; 
 
 %%
-\n      ++num_lines; ++num_chars;
-.       ++num_chars;
-
+{PLUS} {numPlus++;}
+{SUB} {numSub++;}
+{MULT} {numMult++;}
+{MOD} {numMod++;}
+{DIV} {numDiv++;}
 %%
 main()
         {
         yylex();
-        printf( "# of lines = %d, # of chars = %d\n",
-                num_lines, num_chars );
+        printf( "# of plus = %d\n # of sub = %d\n # of mult = %d\n # of mod = %d\n # of div = %d\n", numPlus, numSub, numMult,numMod,numDiv);
         }
