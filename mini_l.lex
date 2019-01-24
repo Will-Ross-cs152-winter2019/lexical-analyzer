@@ -43,38 +43,40 @@ R_SQUARE_BRACKET \]
 ASSIGN :=
 
 /*
-testing variables
+* Main function
 */
-	int numPlus, numSub, numMult, numMod, numDiv, numEq, numNeq, numLt, numGt, numLte, numGte, numSM, numColon, numComma, numLP, numRP, numLSB, numRSB, numAssign = 0; 
+	 
 
 %%
-{PLUS} {numPlus++;}
-{SUB} {numSub++;}
-{MULT} {numMult++;}
-{MOD} {numMod++;}
-{DIV} {numDiv++;}
-{EQ} {numEq++;}
-{NEQ} {numNeq++;}
-{LT} {numLt++;}
-{GT} {numGt++;}
-{LTE} {numLte++;}
-{GTE} {numGte++;}
-{SEMICOLON} {numSM++;}
-{COLON} {numColon++;}
-{COMMA} {numComma++;}
-{L_PAREN} {numLP++;}
-{R_PAREN} {numRP++;}
-{L_SQUARE_BRACKET} {numLSB++;}
-{R_SQUARE_BRACKET} {numRSB++;}
-{ASSIGN} {numAssign++;}
+{PLUS} {printf("PLUS");}
+{SUB} {printf("SUB");}
+{MULT} {printf("MULT");}
+{MOD} {printf("MOD");}
+{DIV} {printf("DIV");}
+{EQ} {printf("EQ");}
+{NEQ} {printf("NEQ");}
+{LT} {printf("LT");}
+{GT} {printf("GT");}
+{LTE} {printf("LTE");}
+{GTE} {printf("GTE");}
+{SEMICOLON} {printf("SEMICOLON");}
+{COLON} {printf("COLON");}
+{COMMA} {printf("COMMA");}
+{L_PAREN} {printf("L_PAREN");}
+{R_PAREN} {printf("R_PAREN");}
+{L_SQUARE_BRACKET} {printf("L_SQUARE_BRACKET");}
+{R_SQUARE_BRACKET} {printf("R_SQUARE_BRACKET");}
+{ASSIGN} {printf("ASSIGN");}
 {IDENT} {printf("IDENT: %s\n", yytext);}
 {NUMBER} {printf("NUMBER: %d\n", atoi(yytext));}
 _(.*)|(.+)_+ {printf("ERROR: Invalid identifier!\n");}
-. {printf("Error: No match!\n");}
+.
+[ \t]+
+\n
+"##".*
 
 %%
 main()
         {
         yylex();
-        printf( "# of plus = %d\n # of sub = %d\n # of mult = %d\n # of mod = %d\n # of div = %d\n # of eq = %d\n # of neq = %d\n # of lt = %d\n # of gt = %d\n # of lte = %d\n # of gte = %d\n # of semicolon = %d\n # of colon = %d\n # of comma = %d\n # of lparen = %d\n n# of rparen = %d\n # of lsb = %d\n # of rsb = %d\n # of assign = %d\n", numPlus, numSub, numMult, numMod, numDiv, numEq, numNeq, numLt, numGt, numLte, numGte, numSM, numColon, numComma, numLP, numRP, numLSB, numRSB, numAssign);
- }
+}
