@@ -41,7 +41,8 @@ R_PAREN 		\)
 L_SQUARE_BRACKET	\[
 R_SQUARE_BRACKET 	\]
 ASSIGN :=
-
+WH			" "
+TAB			\t
 /*
 * Reserved Words
 */
@@ -77,66 +78,68 @@ RETURN		"return"
 /*
 * Main function
 */
-	 int numLines = 1;
+	 int numLines = 1, numChar = 1;
 
 %%
-{PLUS} 			printf("PLUS\n");
-{SUB} 			printf("SUB\n");
-{MULT} 			printf("MULT\n");
-{MOD} 			printf("MOD\n");
-{DIV} 			printf("DIV\n");
+{PLUS} 			{printf("PLUS\n");numChar+= yyleng;}
+{SUB} 			{printf("SUB\n");numChar+= yyleng;}
+{MULT} 			{printf("MULT\n");numChar+= yyleng;}
+{MOD} 			{printf("MOD\n");numChar+= yyleng;}
+{DIV} 			{printf("DIV\n");numChar+= yyleng;}
 
-{EQ} 			printf("EQ\n");
-{NEQ} 			printf("NEQ\n");
-{LT} 			printf("LT\n");
-{GT} 			printf("GT\n");
-{LTE} 			printf("LTE\n");
-{GTE} 			printf("GTE\n");
+{EQ} 			{printf("EQ\n");numChar+= yyleng;}
+{NEQ} 			{printf("NEQ\n");numChar+= yyleng;}
+{LT} 			{printf("LT\n");numChar+= yyleng;}
+{GT} 			{printf("GT\n");numChar+= yyleng;}
+{LTE} 			{printf("LTE\n");numChar+= yyleng;}
+{GTE} 			{printf("GTE\n");numChar+= yyleng;}
 
-{SEMICOLON} 		printf("SEMICOLON\n");
-{COLON} 		printf("COLON\n");
-{COMMA} 		printf("COMMA\n");
-{L_PAREN} 		printf("L_PAREN\n");
-{R_PAREN} 		printf("R_PAREN\n");
-{L_SQUARE_BRACKET} 	printf("L_SQUARE_BRACKET\n");
-{R_SQUARE_BRACKET} 	printf("R_SQUARE_BRACKET\n");
-{ASSIGN} 		printf("ASSIGN\n");
+{SEMICOLON} 		{printf("SEMICOLON\n");numChar+= yyleng;}
+{COLON} 		{printf("COLON\n");numChar+= yyleng;}
+{COMMA} 		{printf("COMMA\n");numChar+= yyleng;}
+{L_PAREN} 		{printf("L_PAREN\n");numChar+= yyleng;}
+{R_PAREN} 		{printf("R_PAREN\n");numChar+= yyleng;}
+{L_SQUARE_BRACKET} 	{printf("L_SQUARE_BRACKET\n");numChar+= yyleng;}
+{R_SQUARE_BRACKET} 	{printf("R_SQUARE_BRACKET\n");numChar+= yyleng;}
+{ASSIGN} 		{printf("ASSIGN\n");numChar+= yyleng;}
 
-{FUNCTION}		printf("FUNCTION\n");
-{BEGIN_PARAMS}		printf("BEGIN_PARAMS\n");
-{END_PARAMS}		printf("END_PARAMS\n");
-{BEGIN_LOCALS}		printf("BEGIN_LOCALS\n");
-{END_LOCALS}		printf("END_LOCALS\n");
-{BEGIN_BODY}		printf("BEGIN_BODY\n");
-{END_BODY}		printf("END_BODY\n");
-{INTEGER}		printf("INTEGER\n");
-{ARRAY}			printf("ARRAY\n");
-{OF}			printf("OF\n");
-{IF}			printf("IF\n");
-{THEN}			printf("THEN\n");
-{ENDIF}			printf("ENDIF\n");
-{ELSE}			printf("ELSE\n");
-{WHILE}			printf("WHILE\n");
-{DO}			printf("DO\n");
-{BEGINLOOP}		printf("BEGINLOOP\n");
-{ENDLOOP}		printf("ENDLOOP\n");
-{CONTINUE}		printf("CONTINUE\n");
-{READ}			printf("READ\n");
-{WRITE}			printf("WRITE\n");
-{AND}			printf("AND\n");
-{OR}			printf("OR\n");
-{NOT}			printf("NOT\n");
-{TRUE}			printf("TRUE\n");
-{FALSE}			printf("FALSE\n");
-{RETURN}		printf("RETURN\n");
+{FUNCTION}		{printf("FUNCTION\n");numChar+= yyleng;}
+{BEGIN_PARAMS}		{printf("BEGIN_PARAMS\n");numChar+= yyleng;}
+{END_PARAMS}		{printf("END_PARAMS\n");numChar+= yyleng;}
+{BEGIN_LOCALS}		{printf("BEGIN_LOCALS\n");numChar+= yyleng;}
+{END_LOCALS}		{printf("END_LOCALS\n");numChar+= yyleng;}
+{BEGIN_BODY}		{printf("BEGIN_BODY\n");numChar+= yyleng;}
+{END_BODY}		{printf("END_BODY\n");numChar+= yyleng;}
+{INTEGER}		{printf("INTEGER\n");numChar+= yyleng;}
+{ARRAY}			{printf("ARRAY\n");numChar+= yyleng;}
+{OF}			{printf("OF\n");numChar+= yyleng;}
+{IF}			{printf("IF\n");numChar+= yyleng;}
+{THEN}			{printf("THEN\n");numChar+= yyleng;}
+{ENDIF}			{printf("ENDIF\n");numChar+= yyleng;}
+{ELSE}			{printf("ELSE\n");numChar+= yyleng;}
+{WHILE}			{printf("WHILE\n");numChar+= yyleng;}
+{DO}			{printf("DO\n");numChar+= yyleng;}
+{BEGINLOOP}		{printf("BEGINLOOP\n");numChar+= yyleng;}
+{ENDLOOP}		{printf("ENDLOOP\n");numChar+= yyleng;}
+{CONTINUE}		{printf("CONTINUE\n");numChar+= yyleng;}
+{READ}			{printf("READ\n");numChar+= yyleng;}
+{WRITE}			{printf("WRITE\n");numChar+= yyleng;}
+{AND}			{printf("AND\n");numChar+= yyleng;}
+{OR}			{printf("OR\n");numChar+= yyleng;}
+{NOT}			{printf("NOT\n");numChar+= yyleng;}
+{TRUE}			{printf("TRUE\n");numChar+= yyleng;}
+{FALSE}			{printf("FALSE\n");numChar+= yyleng;}
+{RETURN}		{printf("RETURN\n");numChar+= yyleng;}
 
-{IDENT} 		printf("IDENT: %s\n", yytext);
-{NUMBER} 		printf("NUMBER: %d\n", atoi(yytext));
-_(.*)|(.+)_+ 		printf("ERROR: Invalid identifier!\n");
-.
-[ \t]+
-\n			++numLines;
+{IDENT} 		{printf("IDENT %s\n", yytext);numChar += yyleng;}
+{NUMBER} 		{printf("NUMBER %d\n", atoi(yytext));numChar += yyleng;}
+{WH}+			{numChar += yyleng;}
+\n			{++numLines; numChar = 1;}
+{TAB}			{numChar += 3;}
 "##".*
+{IDENT}_+ 			{printf("Error at line %d, column %d: identifier \"%s\" cannot end with an underscore\n", numLines, numChar, yytext); exit(1);}
+_(.*)|{DIGIT}{LETTER}(.*)	{printf("Error at line %d, column %d: identifier \"%s\" must begin with a letter\n", numLines, numChar, yytext); exit(1);}
+.				{printf("Error at line %d, column %d: unrecognized symbol \"%s\"\n", numLines, numChar, yytext); exit(1);}
 
 %%
 main()
