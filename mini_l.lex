@@ -72,7 +72,7 @@ OR		"or"
 NOT		"not"
 TRUE		"true"
 FALSE		"false"
-REUTRN		"return"
+RETURN		"return"
 
 /*
 * Main function
