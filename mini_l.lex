@@ -7,7 +7,7 @@ UPPER 	[A-Z]
 LETTER 	({LOWER}|{UPPER})
 NUMBER 	{DIGIT}+
 FLOAT 	{DIGIT}*\.{DIGIT}+
-IDENT 	{LETTER}({LETTER}|{DIGIT}|_)*({LETTER}|{DIGIT})
+IDENT 	({LETTER}({LETTER}|{DIGIT}|_)*({LETTER}|{DIGIT}))|{LETTER}
 /*
 * Arithmetic Symbols
 */
@@ -77,30 +77,30 @@ RETURN		"return"
 /*
 * Main function
 */
-	 
+	 int numLines = 1;
 
 %%
-{PLUS} 			printf("PLUS");
-{SUB} 			printf("SUB");
-{MULT} 			printf("MULT");
-{MOD} 			printf("MOD");
-{DIV} 			printf("DIV");
+{PLUS} 			printf("PLUS\n");
+{SUB} 			printf("SUB\n");
+{MULT} 			printf("MULT\n");
+{MOD} 			printf("MOD\n");
+{DIV} 			printf("DIV\n");
 
-{EQ} 			printf("EQ");
-{NEQ} 			printf("NEQ");
-{LT} 			printf("LT");
-{GT} 			printf("GT");
-{LTE} 			printf("LTE");
-{GTE} 			printf("GTE");
+{EQ} 			printf("EQ\n");
+{NEQ} 			printf("NEQ\n");
+{LT} 			printf("LT\n");
+{GT} 			printf("GT\n");
+{LTE} 			printf("LTE\n");
+{GTE} 			printf("GTE\n");
 
-{SEMICOLON} 		printf("SEMICOLON");
-{COLON} 		printf("COLON");
-{COMMA} 		printf("COMMA");
-{L_PAREN} 		printf("L_PAREN");
-{R_PAREN} 		printf("R_PAREN");
-{L_SQUARE_BRACKET} 	printf("L_SQUARE_BRACKET");
-{R_SQUARE_BRACKET} 	printf("R_SQUARE_BRACKET");
-{ASSIGN} 		printf("ASSIGN");
+{SEMICOLON} 		printf("SEMICOLON\n");
+{COLON} 		printf("COLON\n");
+{COMMA} 		printf("COMMA\n");
+{L_PAREN} 		printf("L_PAREN\n");
+{R_PAREN} 		printf("R_PAREN\n");
+{L_SQUARE_BRACKET} 	printf("L_SQUARE_BRACKET\n");
+{R_SQUARE_BRACKET} 	printf("R_SQUARE_BRACKET\n");
+{ASSIGN} 		printf("ASSIGN\n");
 
 {FUNCTION}		printf("FUNCTION\n");
 {BEGIN_PARAMS}		printf("BEGIN_PARAMS\n");
@@ -135,7 +135,7 @@ RETURN		"return"
 _(.*)|(.+)_+ 		printf("ERROR: Invalid identifier!\n");
 .
 [ \t]+
-\n
+\n			++numLines;
 "##".*
 
 %%
