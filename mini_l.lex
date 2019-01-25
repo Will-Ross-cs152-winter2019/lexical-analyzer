@@ -80,27 +80,27 @@ REUTRN		"return"
 	 
 
 %%
-{PLUS} 			{printf("PLUS");}
-{SUB} 			{printf("SUB");}
-{MULT} 			{printf("MULT");}
-{MOD} 			{printf("MOD");}
-{DIV} 			{printf("DIV");}
+{PLUS} 			printf("PLUS");
+{SUB} 			printf("SUB");
+{MULT} 			printf("MULT");
+{MOD} 			printf("MOD");
+{DIV} 			printf("DIV");
 
-{EQ} 			{printf("EQ");}
-{NEQ} 			{printf("NEQ");}
-{LT} 			{printf("LT");}
-{GT} 			{printf("GT");}
-{LTE} 			{printf("LTE");}
-{GTE} 			{printf("GTE");}
+{EQ} 			printf("EQ");
+{NEQ} 			printf("NEQ");
+{LT} 			printf("LT");
+{GT} 			printf("GT");
+{LTE} 			printf("LTE");
+{GTE} 			printf("GTE");
 
-{SEMICOLON} 		{printf("SEMICOLON");}
-{COLON} 		{printf("COLON");}
-{COMMA} 		{printf("COMMA");}
-{L_PAREN} 		{printf("L_PAREN");}
-{R_PAREN} 		{printf("R_PAREN");}
-{L_SQUARE_BRACKET} 	{printf("L_SQUARE_BRACKET");}
-{R_SQUARE_BRACKET} 	{printf("R_SQUARE_BRACKET");}
-{ASSIGN} 		{printf("ASSIGN");}
+{SEMICOLON} 		printf("SEMICOLON");
+{COLON} 		printf("COLON");
+{COMMA} 		printf("COMMA");
+{L_PAREN} 		printf("L_PAREN");
+{R_PAREN} 		printf("R_PAREN");
+{L_SQUARE_BRACKET} 	printf("L_SQUARE_BRACKET");
+{R_SQUARE_BRACKET} 	printf("R_SQUARE_BRACKET");
+{ASSIGN} 		printf("ASSIGN");
 
 {FUNCTION}		printf("FUNCTION\n");
 {BEGIN_PARAMS}		printf("BEGIN_PARAMS\n");
@@ -130,9 +130,9 @@ REUTRN		"return"
 {FALSE}			printf("FALSE\n");
 {RETURN}		printf("RETURN\n");
 
-{IDENT} 		{printf("IDENT: %s\n", yytext);}
-{NUMBER} 		{printf("NUMBER: %d\n", atoi(yytext));}
-_(.*)|(.+)_+ 		{printf("ERROR: Invalid identifier!\n");}
+{IDENT} 		printf("IDENT: %s\n", yytext);
+{NUMBER} 		printf("NUMBER: %d\n", atoi(yytext));
+_(.*)|(.+)_+ 		printf("ERROR: Invalid identifier!\n");
 .
 [ \t]+
 \n
