@@ -138,7 +138,7 @@ RETURN		"return"
 {TAB}			{numChar += 3;}
 "##".*
 {IDENT}_+ 			{printf("Error at line %d, column %d: identifier \"%s\" cannot end with an underscore\n", numLines, numChar, yytext); exit(1);}
-_(.*)|{DIGIT}{LETTER}(.*)	{printf("Error at line %d, column %d: identifier \"%s\" must begin with a letter\n", numLines, numChar, yytext); exit(1);}
+_(.*)|{NUMBER}{LETTER}(.*)	{printf("Error at line %d, column %d: identifier \"%s\" must begin with a letter\n", numLines, numChar, yytext); exit(1);}
 .				{printf("Error at line %d, column %d: unrecognized symbol \"%s\"\n", numLines, numChar, yytext); exit(1);}
 
 %%
