@@ -12,7 +12,7 @@ IDENT 	({LETTER}({LETTER}|{DIGIT}|_)*({LETTER}|{DIGIT}))|{LETTER}
 * Arithmetic Symbols
 */
 
-PLUS 	\+
+ADD 	\+
 SUB 	-
 MULT 	\*
 DIV 	\/
@@ -81,7 +81,7 @@ RETURN		"return"
 	 int numLines = 1, numChar = 1;
 
 %%
-{PLUS} 			{printf("PLUS\n");numChar+= yyleng;}
+{ADD} 			{printf("ADD\n");numChar+= yyleng;}
 {SUB} 			{printf("SUB\n");numChar+= yyleng;}
 {MULT} 			{printf("MULT\n");numChar+= yyleng;}
 {MOD} 			{printf("MOD\n");numChar+= yyleng;}
@@ -138,7 +138,7 @@ RETURN		"return"
 {TAB}			{numChar += 3;}
 "##".*
 {IDENT}_+ 			{printf("Error at line %d, column %d: identifier \"%s\" cannot end with an underscore\n", numLines, numChar, yytext); exit(1);}
-_(.*)|{NUMBER}{LETTER}(.*)	{printf("Error at line %d, column %d: identifier \"%s\" must begin with a letter\n", numLines, numChar, yytext); exit(1);}
+(_|{NUMBER})+({IDENT})	{printf("Error at line %d, column %d: identifier \"%s\" must begin with a letter\n", numLines, numChar, yytext); exit(1);}
 .				{printf("Error at line %d, column %d: unrecognized symbol \"%s\"\n", numLines, numChar, yytext); exit(1);}
 
 %%
